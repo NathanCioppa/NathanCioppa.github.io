@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify App</title>
+    <script src="spotify.js"></script>
+</head>
+<style>
+    html {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
+    #main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    p {
+        margin: 5px;
+    }
+    
+    button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: rgb(59, 87, 211);
+        border-color: rgb(44, 66, 166);
+        border-style: solid;
+        margin: 5px;
+    }
+
+    input {
+        margin: 5px;
+        padding: 5px;
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    a {
+        margin: 5px;
+    }
+
+    #buttonTop {
+        font-size: medium;
+    }
+    #buttonBottom {
+        font-size: smaller;
+    }
+    .buttonText {
+        color: white;
+    }
+</style>
+<body>
+    <div id="main">
+    <p>In order to use the app, you'll have to get an authorization token from Spotify</p>
+    <p>
+        <a href="https://accounts.spotify.com/authorize?client_id=1550bba8382f47bbbc6de59228e3cddf&redirect_uri=https://nathancioppa.github.io/spotify-app.html&response_type=token&scope=user-read-private user-read-email playlist-read-private playlist-modify-public playlist-modify-private user-read-currently-playing">
+        Sign in and get token
+        </a>
+    </p>
+    <input id="showToken" placeholder="Token will appear here" readonly/>
+    <button onclick=getToken()>
+        <span class="buttonText" id="buttonTop">Press here after signing in</span>
+        <span class="buttonText" id="buttonBottom">- Then your token will appear above -</span>
+    </button>
+    </div>
+</body>
+</html>
