@@ -60,15 +60,11 @@
 <body>
     <div id="main">
     <p>In order to use the app, you'll have to get an authorization token from Spotify</p>
-    <p>
-        <a href="https://accounts.spotify.com/authorize?client_id=1550bba8382f47bbbc6de59228e3cddf&redirect_uri=https://nathancioppa.github.io/spotify-app.html&response_type=token&scope=user-read-private user-read-email playlist-read-private playlist-modify-public playlist-modify-private user-read-currently-playing">
-        Sign in and get token
-        </a>
-    </p>
+    <p>Return to the app once you have gotten your token</p>
     <input id="showToken" placeholder="Token will appear here" readonly/>
     <button onclick=getToken()>
-        <span class="buttonText" id="buttonTop">Press here after signing in</span>
-        <span class="buttonText" id="buttonBottom">- Then your token will appear above -</span>
+        <span class="buttonText" id="buttonTop">Press here to get token</span>
+        <span class="buttonText" id="buttonBottom">token will be automatically copied to clipboard</span>
     </button>
     </div>
 </body>
