@@ -1,9 +1,10 @@
 function getToken() {
 
     const mobileCode = mobileAuthCode()
+    console.log(mobileCode)
 
     const hash = window.location.hash
-    const token = mobileCode === null ? hash.substring(1).split('&').find(elem => elem.startsWith('access_token')).split('=')[1] : mobileCode
+    const token = !window.location.href.includes('&code=') ? hash.substring(1).split('&').find(elem => elem.startsWith('access_token')).split('=')[1] : mobileCode
     const tokenInput = document.getElementById('showToken')
     tokenInput.value = token
 
@@ -14,7 +15,6 @@ function getToken() {
 
 function mobileAuthCode() {
     const url = window.location.href
-    const params = new URLSearchParams(url)
-    const code = params.get('code')
+    const code = url.slice(url.indexOf('?code=')+6, url.length)
     return code
 }
