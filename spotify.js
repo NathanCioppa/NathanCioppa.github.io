@@ -4,7 +4,7 @@ function getToken() {
     console.log(mobileCode)
 
     const hash = window.location.hash
-    const token = !window.location.href.includes('&code=') ? hash.substring(1).split('&').find(elem => elem.startsWith('access_token')).split('=')[1] : mobileCode
+    const token = !window.location.href.includes('?code=') ? hash.substring(1).split('&').find(elem => elem.startsWith('access_token')).split('=')[1] : mobileCode
     const tokenInput = document.getElementById('showToken')
     tokenInput.value = token
 
