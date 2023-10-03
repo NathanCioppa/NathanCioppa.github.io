@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoJo's Mod</title>
+    <link rel="icon" type="image/png" href="images/PixelAvatar.png">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="jojos-mod.css">
+    <script type="module" src="item-view-element.js"></script>
+    <script src="style-helper.js"></script>
+</head>
+<body>
+    <div id="page-header-container" class="div-page-header">
+        <div class="main-div-theme flex-row">
+            <img src="images/PixelAvatar.png" class="mod-icon">
+            <div class="flex-column flex-center">
+                <h1 class="page-title">JoJo's Mod for <i>Terraria</i></h1>
+                <span class="page-subtitle">A bit of fun</span>
+            </div>
+            <img src="images/PixelAvatar.png" class="mod-icon">
+        </div>
+    </div>
+    
+    <div class="flex-row ">
+            <div id="navbar" class="main-div-theme flex-column">
+                <nav>
+                    <span class="navbar-divider-text">Other Projects</span>
+                    <ul class="navbar-list">
+                        <a href="../index.html"><li>Home Page</li></a>
+                        <a href="../jojos_mod/jojos-mod.html"><li>JoJo's Mod</li></a>
+                        <a href="../index.html"><li>Spotify AutoQueue</li></a>
+                    </ul>
+                    <span class="navbar-divider-text">This Page</span>
+                    <ul class="navbar-list">
+                        <a href="#little-rain-hood"><li>Little Rain Hood</li></a>
+                        <a href="#little-lighter"><li>Little Lighter</li></a>
+                        <a href="#scissor-blade"><li>Scissor Blade</li></a>
+                        <a href="#strange-poem"><li>Strange Poem</li></a>
+                        <a href="#cinematic-masterpiece"><li>Cinematic Masterpiece</li></a>
+                        <a href="#symphony-hat"><li>Symphony Hat</li></a>
+                    </ul>
+                </nav>
+                <img src="images/MomijiRabbit.png" alt="Image" class="rabbit-image animation-alternating-small flex-self-center">
+            </div>
+        
+        <main id="page-content" class="flex-column">
+            <div class="main-div-theme flex-column-fit">
+                <p>JoJo's Mod is a very minor content mod for <a href="https://terraria.org" target="_blank" rel="noopener noreferrer"><i>Terraria</i></a>, which adds a couple of items into the game. Many of these items are references to other games or shows that I thought would be a bit of fun to add. Most of the sprites used in this mod were drawn by me, with the exception of sprites for Sayori, Winston, and the Shrek CD, which are just PNGs I ripped off the internet (but they look funny so it's fine).</p>
+                <p class="small-link"> View mod on: 
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/NathanCioppa/JoJosMod">Github</a>
+                    &nbsp;|&nbsp;
+                    <a target="_blank" rel="noopener noreferrer" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3004283351">Steam Workshop</a>
+                </p>
+            </div>
+
+            <div id="little-rain-hood" class="main-div-theme flex-column-fit item-view animated-item-view">
+                <div class="flex-row">
+                    <div class="flex-column">
+                        <div class="flex-column-fit item-title-div">
+                            <span class="item-name">Little Rain Hood</span>
+                            <span class="item-tooltip">"Little lost things sometimes find their way home."</span>
+                        </div>
+                        <div class="item-images-container flex-row flex-center flex-grow-1">
+                            <img class="item-image" src="images/LittleRainHoodlarge.png" alt="Yellow rain hood image">
+                            <img class="item-image-actual-size item-image" src="images/LittleRainHood.png" alt="Yellow rain hood image" title="Actual size"> 
+                        </div>
+                    </div>
+                    <div class="item-stats flex-column flex-grow-1">
+                        <ul class="undecorated-list stats-list">
+                            <li>
+                                Rarity:
+                                <span class="item-property-label">Yellow</span>
+                            </li>
+                            <li>
+                                Type:
+                                <span class="item-property-label">Helmet, vanity</span>
+                            </li>
+                            <li>
+                                Dropped By:
+                                <span class="item-property-label"><a target="_blank" rel="noopener noreferrer" href="https://terraria.wiki.gg/wiki/Raincoat_Zombie">Raincoat Zombie</a>,
+                                    <br> 5% drop chance
+                                </span>
+
+                            </li>
+                        </ul>
+                        <div class="stat-list-end-placeholder-container">
+                            <img class="stat-list-end-placeholder-image" src="images/MomijiRabbitSemiTransparent.png">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="flex-column-fit">
+                    <p>
+                        The <b>Little Rain Hood</b> is a reference to <b>Six's raincoat</b> from the game 
+                        <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Little_Nightmares">
+                            <b><i>Little Nightmares</i></b></a>.
+                        The colors used for the sprite match with the 
+                        <a target="_blank" rel="noopener noreferrer" href="https://terraria.wiki.gg/wiki/Rain_armor">
+                           <b>rain armor</b></a>
+                        which is already in the game. Its tooltip matches the description for the achievement <b>"The Lair"</b> from <i>Little Nightmares</i>.
+                    </p>
+                </div>
+                <div class="item-view-ending-image"></div>
+            </div>
+
+            <item-view id="little-lighter" class="main-div-theme item-view item-view-alternating animated-item-view"
+                item-name="Little Lighter" 
+                tooltip='"Not all lights can be trusted, but these should be quite safe!"'
+                scaled-image="images/LanternLighterSpritesheetLarge.png"
+                real-size-image="images/LanternLighterSpritesheet.png"
+                rarity="Yellow"
+                item-type="Light, placeable"
+                crafting-station="Anywhere"
+                crafting-recipe="Lead / Iron Bar (15), Torch (100), Ruby (2)"
+            >
+                <p>
+                    The <b>Little Lighter</b> is a reference to the lighter from 
+                    <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Little_Nightmares">
+                        <b><i>Little Nightmares</i></b></a>.
+                    It provides the same light as a torch when held. Placing this item does not consume it, and instead places a <b>Little Lantern</b>. These lanterns can be <b>placed infinitely</b>, however, they are only able to be placed on solid tiles. Its tooltip matches the description for the <b>"Light Up Your Life"</b> achievement from <i>Little Nightmares</i>.
+                </p>
+            </item-view>
+
+            <item-view id="scissor-blade" class="main-div-theme item-view item-view-alternating animated-item-view"
+                item-name="Scissor Blade"
+                tooltip='"Swiss cheese!"'
+                scaled-image="images/ScissorBladeLarge.png"
+                real-size-image="images/ScissorBlade.png"
+                rarity="Yellow"
+                item-type="Melee weapon, sword"
+                damage="140 (melee)"
+                speed="15 (very fast)"
+                knockback="4 (weak)"
+                crafting-station="Mythril / Orichalcum Anvil"
+                href-crafting-station="https://terraria.wiki.gg/wiki/Hardmode_Anvils"
+                crafting-recipe='<a target="blank" rel="noopener noreferrer" href="https://terraria.wiki.gg/wiki/Stylish_Scissors">Stylish Scissors</a> (1), Broken Hero Sword (1)'
+            >
+                <p>
+                    The <b>Scissor Blade</b> is a reference to the scissor blade from the anime
+                    <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Kill_la_Kill">
+                        <i><b>Kill la Kill</b></i></a>.
+                    Its crafting recipe includes the <b>Stylish Scissors</b>, which also reference <i>Kill la Kill</i>, as their name within Terraria's source code is <b><code>StylistKilLaKillScissorsIWish</code></b>. The Scissor Blade <b>ignores 50 points of enemy defense</b>. Its high armor penetration and base damage stats are meant to place it on par with the 
+                    <a target="_blank" rel="noopener noreferrer" href="https://terraria.wiki.gg/wiki/Terra_Blade">
+                        <b>Terra Blade</b></a>,
+                    since the Scissor Blade lacks a projectile, and both weapons can be obtained at the same time. The tooltip references episode 4 of <i>Kill La Kill</i>: 
+                    <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/List_of_Kill_la_Kill_episodes">
+                        <b>"Dawn of a Miserable Morning"</b></a>, where 
+                    <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/List_of_Kill_la_Kill_characters#Mako_Mankanshoku">
+                        <b>Mako</b></a>
+                    follows a trail of Swiss cheese into a trap. <b>Mako is my favorite character :)</b>
+                </p>
+            </item-view>
+
+            <item-view id="strange-poem" class="main-div-theme item-view item-view-alternating animated-item-view"
+                item-name="Strange Poem"
+                tooltip='"GET OUT OF MY HEAD"'
+                scaled-image="images/StrangeNoteSpriteSheetScaled.png"
+                real-size-image="images/StrangeNoteSpriteSheet.png"
+                rarity="Pink"
+                item-type="Ranged weapon, throwing"
+                damage="15 (ranged)"
+                speed="20 (very fast)"
+                ammo="None, reusable"
+                crafting-station="Work Benches"
+                href-crafting-station="https://terraria.wiki.gg/wiki/Work_Benches"
+                crafting-recipe="Rope (30), Fallen Star (2), Rotten Chunks / Vertebrae (2)"
+            >
+                <p>
+                    The <b>Strange Poem</b> is a reference to <b>Sayori's poem</b> from
+                    <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Doki_Doki_Literature_Club!">
+                        <i><b>Doki Doki Literature Club!</b></i></a>.
+                    When used, the player throws a small chibi of the character <b>Sayori</b>, which bounces off surfaces and pierces enemies. It bounces three times and penetrates up to two targets. Each time it bounces, the <code>FemaleHit</code> sound effect is played. Its AI is similar to that of the
+                    <a target="_blank" rel="noopener noreferrer" href="https://terraria.wiki.gg/wiki/Throwing_Knife">
+                        <b>Throwing Knife</b></a>,
+                    as the projectile initially flies straight in the direction thrown, then begins spinning and falls to the ground. However, the Throwing Knife does not bounce off surfaces.
+                </p>
+            </item-view>
+
+            <item-view id="cinematic-masterpiece" class="main-div-theme item-view item-view-alternating animated-item-view"
+                item-name="Cinematic Masterpiece"
+                tooltip='"Do the roar."'
+                real-size-image="images/ShrekDisc.png"
+                scaled-image="images/ShrekDiscScaled.png"
+                rarity="Lime"
+                item-type="Melee weapon, boomerang"
+                damage="120 (melee)"
+                speed="20 use time (very fast), 17.5 velocity"
+                knockback="6 (average)"
+                crafting-station="Mythril / Orichalcum Anvil"
+                href-crafting-station="https://terraria.wiki.gg/wiki/Hardmode_Anvils"
+                crafting-recipe="Chlorophite Bar (5), Mud Block (50), Ectoplasm (4)"
+            >
+                <p>
+                    The <b>Cinematic Masterpiece</b> is a reference to the movie 
+                    <a href="https://en.wikipedia.org/wiki/Shrek" target="_blank" rel="noopener noreferrer">
+                        <b><i>Shrek</i></b></a>,
+                    which should be obvious considering the sprite is a low-res PNG of <i>Shrek</i> on a DVD. Its AI is similar to the 
+                    <a href="https://terraria.wiki.gg/wiki/Thorn_Chakram" recipe>
+                        <b>Thorn Chakram</b></a>, 
+                    at least in terms of its motion. The disc flies through the air and will bounce off of tiles for roughly half a second before turning around and returning to the player. <b>Upon striking an enemy, the disc will immediately begin returning to the player</b>. To make up for its relatively slow use time due to only one being throwable at a time, the <b>damage dealt by the disc increases the longer it flies in the air</b>. To be precise, it increases by 3% each frame when it is initially thrown, and 1% when it is returning to the player. <b>The final calculated damage value is cast to an integer</b>, since damage values in <i>Terraria</i> must be an integer.
+                </p>
+            </item-view>
+
+            <item-view id="symphony-hat" class="main-div-theme item-view item-view-alternating animated-item-view"
+                item-name="Symphony Hat"
+                tooltip='"The sky is my world... You stinking bitch!"'
+                real-size-image="images/SymphonyHat.png"
+                scaled-image="images/SymphonyHatScaled.png"
+                rarity="Pink"
+                item-type="Helmet, vanity"
+                crafting-station="Loom"
+                href-crafting-station="https://terraria.wiki.gg/wiki/Loom"
+                crafting-recipe='<a href="https://terraria.wiki.gg/wiki/Strings" target="_blank" rel="noopener noreferrer">Red String (1)</a>, Pink Thread (5), Silk (12)'
+            >
+                <p>
+                    The <b>Symphony Hat</b> is a reference to 
+                    <a href="https://en.wikipedia.org/wiki/List_of_Kill_la_Kill_characters#Nonon_Jakuzure" target="_blank" rel="noopener noreferrer">
+                        <b>Jakuzure</b></a>'s
+                    hat from <i>Kill la Kill</i>, with its tooltip being a quote from episode 10:
+                    <a href="https://en.wikipedia.org/wiki/List_of_Kill_la_Kill_episodes">
+                        <b>"I Want to Know More About You"</b></a>.
+                    The sprite for this helmet is too large to fit on the spritesheet which is usually used for helmets, so I had to create a <code>PlayerDrawLayer</code> to display it properly. This made me go insane :) <b>There are so few resources on how to do this that I decided to create a <a href="tall_hat_guide.html">guide on creating tall helmets with tModLoader.</a></b>
+                </p>
+            </item-view>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,260 @@
+html{
+    font-family: sans-serif;
+}
+
+body{
+    background-image: linear-gradient( to bottom, rgb(149, 207, 255), rgb(155, 255, 171) );
+    background-attachment: fixed;
+}
+
+p{
+    margin: 0.5em 0.2em;
+    font-size: min(2.5vw,1rem);
+}
+
+a{
+    text-decoration: none;
+}
+a:link{
+    color: rgb(0, 0, 150);
+}
+
+code{
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 0 2px;
+}
+
+.pixel-border{
+    border: solid;
+    padding: 5px;
+    border-image: url("images/YellowBorder.png") 8 / 10px round;
+}
+
+.section-background{
+    background-color:rgba(250, 236, 211, 0.8);
+}
+
+.section-margin{
+    margin: 5px;
+}
+
+.main-div-theme{
+    border: solid;
+    padding: 5px;
+    border-image: url("images/YellowBorder.png") 8 / 10px round;
+    background-color:rgba(250, 236, 211, 0.8);
+    margin: 5px;
+}
+
+
+
+.page-title{
+    margin: 0 0.5em;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: min(4vw,1.7rem);
+}
+.page-subtitle{
+    font-size: large;
+    font-weight: bold;
+    font-size: min(3vw,1.2rem);
+}
+
+
+
+#navbar{
+    height: fit-content;
+    width: fit-content;
+    position: sticky;
+    top: 10px;
+    margin: 5px;
+}
+
+.navbar-list{
+    margin: 0;
+    padding: 2px;
+}
+.navbar-list > a {
+    color: black;
+    text-decoration: none;
+}
+.navbar-list > a > li{
+    font-size: 0.9rem;
+    padding: 0.15rem;
+    list-style: none;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+.navbar-list > a > li:hover{
+    background-color: rgba(140, 140, 140, 0.2);
+}
+
+.navbar-divider-text{
+    font-size: min(2.5vw,0.9rem);
+    font-weight: bold;
+    padding: 0.25rem 0.15rem 0.1rem 0.15rem;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+
+
+#page-content{
+    display: flex;
+}
+
+.small-link{
+    font-size: min(2.5vw, 0.8em);
+}
+
+.mod-icon{
+    align-self: center;
+    transform: rotate(-10deg);
+    animation: modIconRotate 2s infinite linear alternate;
+    height: 10vw;
+    max-height: 62px;
+}
+.rabbit-image{
+    width: fit-content;
+    padding: 3px;
+}
+.animation-alternating-small{
+    transform: rotate(-5deg);
+    animation: rabbitImageRotate 1s infinite linear alternate;
+}
+.flex-self-center{
+    display: flex;
+    align-self: center;
+}
+
+
+
+
+
+.animated-item-view{
+    transition: ease-in-out .2s;
+}
+.animated-item-view:hover{
+    box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.3);
+    transform:scale(1.025);
+}
+.item-view-alternating:nth-child(odd){
+    align-self: flex-end;
+}
+
+.item-view{
+    width: fit-content;
+    max-width: 75%;
+    margin: 10px;
+    padding: 0.6rem;
+}
+.item-title-div{
+    font-size: min(3.5vw,1.5rem);
+    margin-bottom: 0.5em;
+    align-items: center;
+}
+.item-name{
+    font-size: min(3.5vw,1.3rem);
+    font-weight: bold;
+    padding: 0px 0.1em 0.05em 0.1em;
+    margin-bottom: 0.1em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    width: fit-content;
+    text-align: center;
+}
+.item-tooltip{
+    font-size: min(2.5vw,1rem);
+    text-align: center;
+}
+
+.item-image{
+    max-width: fit-content;
+    margin: 0 5px;
+}
+.item-image-actual-size{
+    width: fit-content;
+}
+.item-images-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.item-stats{
+    font-size: min(2.5vw,0.9rem);
+    margin: 0.5rem;
+    padding-left: 0.5rem;
+    border-left:1px solid rgba(0, 0, 0, 0.3);
+}
+.stats-list > * {
+    margin-bottom: 0.4rem;
+}
+.stat-list-end-placeholder-container{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+.stat-list-end-placeholder-image{
+    max-width: 36px;
+    max-height: 40px;
+    height: 5vw;
+    display: none;
+}
+.item-property-label{
+    font-weight: bold;
+}
+
+
+.item-view-ending-image{
+    max-height: 48px;
+    height: 10vw;
+    width: 100%;
+    background-image: url("images/MomijiRabbitSemiTransparentSpaced.png");
+    background-repeat: space;
+    background-size: contain;
+    align-self: center;
+    margin-top: 8px;
+}
+
+
+
+@keyframes modIconRotate {
+    to {
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes rabbitImageRotate {
+    to {
+        transform: rotate(5deg);
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .navbar-divider-text{
+        font-size: 0.75rem;
+    }
+    .navbar-list > a > li{
+        font-size: 0.75rem;
+    }
+    .item-view{
+        max-width: unset;
+    }
+    .item-image{
+        width: 10vw;
+    }
+    .stat-list-end-placeholder-container{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #navbar{
+        display: none;
+    }
+    
+}
+

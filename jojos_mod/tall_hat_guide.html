@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tMod Tall Hat Guide</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="jojos-mod.css">
+    <link rel="stylesheet" href="tall_hat_guide.css">
+</head>
+<body>
+    <main class="flex-column flex-center-horizontal">
+        <div class="main-div-theme guide-contents">
+            <div id="guide-header" class="flex-column flex-center">
+                <h1 class="guide-title">Creating Tall Helmets with tModLoader</h1>
+                <div class="guide-subtitle-container flex-row flex-center-horizontal">
+                    <span class="guide-subtitle-fading-border fading-border-left"></span>
+                    <img id="guide-head-image" src="images/GuideNpcHead.png" alt="guide npc head">
+                    <span class="guide-subtitle-text guide-head-text">Guide</span>
+                    <span class="guide-subtitle-fading-border fading-border-right"></span>
+                </div> 
+                <p class="text-center guide-opener">Making helmets with tModLoader is gernerally a straightforward process&mdash; Draw the sprite for your helmet, copy and paste it onto the spritesheet about twenty times, drag it into Visual Studio, and let the game do its magic of drawing the helmet onto your player. This works just fine 99% of the time, but theres only so much space on each frame of the spritesheet. So what do you do when your sprite doesn't fit? That is exactly what I spent about 3 days trying to figure out; This&nbsp;guide&nbsp;shows&nbsp;how&nbsp;I&nbsp;did&nbsp;it.</p>
+            </div>
+            
+            <div class="guide-section">
+                <span class="guide-section-divider-text">Basic Overview</span>
+                <p>In short, we are going to use a <code>PlayerDrawLayer</code> to draw the helmet sprite onto the player whenever the helmet is equipped. Then we have to adjust the position of the helmet to give off the illusion of it being worn on the player's head.</p>
+                <p>We are going to need 3 classes: a <code>ModItem</code> class, which actually adds your helmet item into the game; a <code>ModPlayer</code> class, which essentially keeps track of whether or not the player is wearing your helmet, so that the final class&mdash;a <code>PlayerDrawLayer</code> class&mdash;can draw your helmet onto the player.</p>
+                <p>For this guide, I am going to be using the Symphony Hat from my mod as the example. Keep in mind that throughout this guide the namespaces and class names that I use will be specific to my mod. Your mod is obviously going to have different names and most likely a different structure.</p>
+            </div>
+            <div class="guide-section">
+                <span class="guide-section-divider-text">Setup for <code>ModItem</code> and <code>ModPlayer</code> Classes</span>
+                <p>First, we will set up the <code>ModItem</code> class just as you would for any helmet. In my case, I created a file named <code>SymphonyHat.cs</code> inside the <code>Armor</code> folder of my project. Using folders is completely optional, but it helps to keep the project organized.</p>
+                <p>To start off, the class should look something like this:</p>
+                <div class="code-container">
+                    <span class="code-snipet-file-name">SymphonyHat.cs</span>
+                    <div class="code-snipet">
+<pre>
+<code>
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace JoJosMod.Armor
+{
+    [AutoloadEquip(EquipType.Head)]
+
+    internal class SymphonyHat : ModItem
+    {
+        public override void SetDefaults()
+        {
+            <span class="code-comment">// These values can be whatever you want for your item</span>
+            Item.width = 30; Item.height = 46;
+            Item.vanity = true; <span class="code-comment">// Include this if your helmet is only a vanity item</span>
+            Item.rare = ItemRarityID.Pink;
+            Item.value = 500;
+        }
+    }
+}
+</code>
+</pre>
+                        
+                    </div>
+                </div>
+                <p>Nothing too crazy going on in that class yet, but we will add more to it once the <code>ModPlayer</code> class is set up. Make sure that the <code>[AutoloadEquip(EquipType.Head)]</code> line is included before the class declaration. This basically tells the game to handle our item as a helmet.</p>
+                <p>Now we need to create the <code>ModPlayer</code> class. This class will contain a boolean which tracks whether or not the player is wearing the helmet. <code>ModPlayer</code> has a method called <code>ResetEffects()</code> which we will use to reset the boolean to its default value&mdash;most likely <code>false</code>&mdash;so that the boolean is <code>false</code> when the helmet is not equipped. The way this works is that <code>ResetEffects()</code> is called once every game tick at the beginning of the player's update code. Later on in that code, the boolean will be set to true if the player is wearing your helmet (we will introduce this logic back in our <code>ModItem</code> class once the <code>ModPlayer</code> is set up).</p>
+                <p>With that explaination out of the way, here is what the <code>ModPlayer</code> class should look like:</p>
+                <div class="code-container">
+                    <span class="code-snipet-file-name">SymphonyHatPlayer.cs</span>
+                    <div class="code-snipet">
+<pre>
+<code>
+using Terraria.ModLoader;
+
+namespace JoJosMod.Players
+{
+    internal class SymphonyHatPlayer : ModPlayer
+    {
+        public bool isWearingShmphonyHat;
+
+        public override void ResetEffects()
+        {
+            isWearingShmphonyHat = false;
+        }
+    }
+}
+</code>    
+</pre>
+                    </div>
+                </div>
+                <p>As you can see, the <code>isWearingSymphonyhat</code> boolean is what will track whether or not the Symphony Hat is being worn, and is set to <code>false</code> inside of <code>ResetEffects()</code>.</p>
+                <p>Keep in mind that if your mod uses a lot of these effects, then you do not have to create a seperate file just for this effect. You could have one <code>ModPlayer</code> class for all of the player effects that your mod uses, as long as there is a boolean to track specifically when the player is wearing your helmet. This is the only effect that my mod uses, which is why I named it so specifically.</p>
+                <p>Back in our <code>ModItem</code> class, we need to add the logic which sets the boolean that we just created to <code>true</code> when the helemt is equipped. We will do this by overriding the <code>IsVanitySet()</code> hook to always return true when our helmet is equipped, allowing us to use the <code>UpdateVanitySet()</code> hook to change the boolean in our <code>ModPlayer</code> to <code>true</code>. The <code>UpdateVanitySet()</code> hook allows us to essentially "make things happen" when the player is wearing a full vanity set, which is why we need to override <code>IsVanitySet()</code> to make just this helmet alone count as a vanity set. I initially tried using the <code>UpdateVanity()</code> hook to acomplish this, but it did not seem to be called when the helmet was equipped and I have no idea why.</p>
+                <p>Add the following inside your <code>ModItem</code> class:</p>
+                <div class="code-container">
+                    <div class="code-snipet">
+<pre>
+<code>
+public override bool IsVanitySet(int head, int body, int legs)
+{
+    return true;
+}
+
+public override void UpdateVanitySet(Player player)
+{
+    player.GetModPlayer&lt;SymphonyHatPlayer>().isWearingShmphonyHat = true;
+    <span class="code-comment">// SymphonyHatPlayer should be replaced by the name of the ModPlayer class you created
+    // isWearingSymphonyHat should be replaced by the boolean you created inside that class</span>
+}
+</code>
+</pre>
+                    </div>
+                </div>
+                <p>Remember that you may need to import the namespace that your <code>ModPlayer</code> class is inside of, at the top of the file with your <code>ModItem</code>. In my case, I added <code>using JoJosMod.Players</code> to my <code>SymphonyHat.cs</code> file.</p>
+                <p>Optionally, you can choose how the player's hair is displayed while the helmet is equipped. By default, the player's hair will not drawn at all. I chose to display the player's hat hair, which can be acomplished by the following code: </p>
+                <div class="code-container">
+                    <div class="code-snipet">
+<pre>
+<code>
+public override void SetStaticDefaults()
+{
+    ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
+}
+</code>
+</pre>
+                    </div>
+                </div>
+                <p>Now that we have the logic in place to track whether or not our helmet is being worn, we can move on to actually drawing the helmet onto the player when it is worn. Make sure that you also have the texture for your helmet as well as a helmet spritesheet in the same directory as your helmet item. Our helmet spritesheet is going to be blank for this guide. Remember that the file name for these textures should match the class name of your helmet item, with the spritesheet including <code>_Head</code> the the end of its file name. In my project, these files are called <code>SymphonyHat.png</code> and <code>SymphonyHat_Head.png</code>.</p>
+            </div>
+            <div class="guide-section">
+                <span class="guide-section-divider-text">Setup for <code>PlayerDrawLayer</code> Class and Drawing The Helmet</span>
+                <p>We are going to create a new file which will contain our <code>PlayerDrawLayer</code> class; I will be naming this file <code>SymphonyHatLayer.cs</code>. First, let's get some of the basic setup out of the way before moving on to drawing and positioning the helmet.</p>
+                <p>The <code>PlayerDrawLayer</code> class has a hook called <code>GetDefaultVisibility()</code>. When it returns <code>true</code>, the layer will be made visible; likewise it will be invisible if <code>false</code> is returned. We are going to override this hook to return the value of our boolean which tracks whether or not the helmet is being worn.</p>
+                <p>We also need to override the <code>GetDefaultPosition()</code> hook to tell the game which layer of the player we want this layer to be drawn on. In our case, drawing it after the head layer should suffice. </p>
+                <p>In addition to these two things, I will also be adding the code which makes the helmet appear on the player's minimap icon, as well as declaring a variable to contain the helmet's texture for use later.</p>
+                <div class="code-container">
+                    <span class="code-snipet-file-name">SymphonyHatLayer.cs</span>
+                    <div class="code-snipet">
+<pre>
+<code>
+<span class="code-comment">// These are all of the imports that I ended up needing</span>
+using Terraria;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.DataStructures;
+using Terraria.ModLoader;
+using ReLogic.Content;
+using System.Linq;
+using JoJosMod.Players; <span class="code-comment">// You may need to import the directory that contains your ModPlayer</span>
+
+namespace JoJosMod.Armor
+{
+    internal class SymphonyHatLayer : PlayerDrawLayer
+    {
+        public Asset&lt;Texture2D> hatTexture; <span class="code-comment">// Variable for our texture, will use later</span>
+        public override bool IsHeadLayer => true; <span class="code-comment">// Draws the helmet on the minimap. Optional, but you'll probably want to use this</span>
+        
+        public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
+        {
+            <span class="code-comment">// Return your boolean which tracks whether or not the helmet is being worn</span>
+            return drawInfo.drawPlayer.GetModPlayer&lt;SymphonyHatPlayer>().isWearingShmphonyHat;
+        }
+        
+        <span class="code-comment">// Draws this layer after, or in front of, the head layer</span>
+        public override Position GetDefaultPosition() => new AfterParent(PlayerDrawLayers.Head); 
+        
+        protected override void Draw(ref PlayerDrawSet drawInfo)
+        {
+            <span class="code-comment">// Will contain all the logic for drawing the layer</span>
+            <span class="code-comment">// Keep this empty for now, we will add onto it later</span>
+        }
+    }
+}
+</code>
+</pre>
+                    </div>
+                </div>
+                <p>The rest of our code is going to be written inside of the <code>Draw()</code> hook of our <code>PlayerDrawLayer</code>. We will start by adding what is basically the bare minimum needed to actually have the helmet be drawn onto the screen, then we will handle positioning it onto the player's head.</p>
+                <p>The <code>drawInfo</code> parameter contains a lot of useful information that we will be using throughout this portion of the guide. We will be using <code>drawInfo.drawPlayer</code> very often to access the player which this layer is being draw to, so we will start by declaring a <code>Player</code> variable to make this a bit more convenient to access. </p>
+                <p>We also need to assign the texture of our helemt to the <code>hatTexture</code> variable we created above (yours may be named differently), and define the position that the helmet will be drawn. Then, a new <code>DrawData</code> object will be created with these values&mdash;as well as a few others&mdash;and added to <code>drawInfo.DrawDataCache</code>, which should then draw our helmet.</p>
+                <div class="code-container">
+                    <div class="code-snipet">
+<pre>
+<code>
+protected override void Draw(ref PlayerDrawSet drawInfo)
+{
+    Player player = drawInfo.drawPlayer;
+
+    if (player.DeadOrGhost) return; <span class="code-comment">// If the player is dead or a ghost, don't draw the helmet</span>
+
+    hatTexture ??= ModContent.Request&lt;Texture2D>("JoJosMod/Armor/SymphonyHat"); <span class="code-comment">// Specify the path to your helmet texture, without file extensions.</span>
+
+    var position = drawInfo.Position - Main.screenPosition; <span class="code-comment">// This should position the sprite just about in the middle of the player.</span>
+    position = new Vector2((int)position.X, (int)position.Y); <span class="code-comment">// Cast the x and y values to an integer to keep the sprite in line with the player. Without this, the sprite will appear to shake.</span>
+
+    DrawData drawData = new
+    (
+        hatTexture.Value,
+        position,
+        null,
+        drawInfo.colorArmorHead, <span class="code-comment">// Color of the helmet will interact with light as expected, and be fully visable on the minimap.</span>
+        0,
+        drawInfo.rotationOrigin, <span class="code-comment">// I feel like it makes sense to use this value, idk i dont need to rotate my sprite</span>
+        1f,
+        <span class="code-comment">// Player direction is either -1 or 1, -1 being left, and 1 being right. If your sprite is drawn facing right, this code will flip it to face the same direction as the player.</span>
+        player.direction < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None
+    );
+
+    drawInfo.DrawDataCache.Add(drawData);
+}
+</code>
+</pre>
+                    </div>
+                </div>
+                <p>If everything is implemented correctly, your helmet shoud be drawn similar to this when equipped:</p>
+                <img src="images/GuideHatExample1.png" alt="helmet example">
+                <p>At this point if your helmet is not being drawn, its time to start debugging. One issue I ran into was incorrectly implementing the boolean which tracks when the hat is worn. To see it this is also the case for you, go back to the <code>GetDefaultVisibility()</code> method of your <code>PlayerDrawLayer</code> and have it always return true. Then, the layer should always be drawn to the player regardless of whether or not the helmet is being worn. If this is the case, double check the logic in your <code>ModPlayer</code> and <code>ModItem</code> classes which handle this boolean, as that is were the issue would lie.</p>
+                <p>Let's move on to positioning the helmet on the player's head. The way we will acomplish this is by making changes to the <code>position</code> variable. There is however one major problem we will have to solve, being that in the player's walking animation, the player shifts up and down by about 2 pixels. Before handling that problem, we will first position the helmet so that its sits where we want it to on the player's head while standing still, facing either left or right.</p>
+                <p>We are going to declare two variables called <code>drawOffsetX</code>; to define how many pixels left or right the sprite should be shifted, and <code>drawOffsetY</code>; to define how many pixels up or down the sprite should be shifted. The sprite will be shifted from where ever it is positioned with our current logic implemented. These variables will be used to create a <code>Vector2</code>, the value of which will be added to our <code>position</code> variable before substracting <code>Main.screenPosition</code>.</p>
+                <p>Here is what your <code>Draw()</code> method may look like with these implementations:</p>
+                <div class="code-container">
+                    <div class="code-snipet">
+<pre>
+<code>
+protected override void Draw(ref PlayerDrawSet drawInfo)
+{
+    Player player = drawInfo.drawPlayer;
+
+    if (player.DeadOrGhost) return;
+
+    hatTexture ??= ModContent.Request&lt;Texture2D>("JoJosMod/Armor/SymphonyHat");
+
+    <span class="code-comment">// You may need two different values depending on which direction the player is facing.</span>
+    <span class="code-comment">// In my case, a shift of -4 is needed when facing left, and -6 when right.</span>
+    int drawOffsetX = player.direction < 0 ? -4:-6;
+    <span class="code-comment">// Remember that negative y values will shift the sprite upwards.</span>
+    int drawOffsetY = -26;
+
+    <span class="code-comment">Add a new Vector2 using your x and y offsets</span>
+    var position = drawInfo.Position + new Vector2(drawOffsetX,drawOffsetY) - Main.screenPosition; 
+    position = new Vector2((int)position.X, (int)position.Y); 
+
+    DrawData drawData = new
+    (
+        hatTexture.Value,
+        position,
+        null,
+        drawInfo.colorArmorHead, 
+        0,
+        drawInfo.rotationOrigin, 
+        1f,
+        player.direction < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None
+    );
+
+    drawInfo.DrawDataCache.Add(drawData);
+}
+</code>
+</pre>
+                    </div>
+                </div>
+                <p>Adjust your x and y offset values until your sprite is positioned however you want it. Mine now looks like this:</p>
+                <img src="images/GuideHatExample2.png" alt="helmet example">
+                <p>Make sure your sprite is aligned correctly while facing both directions, the code above shows how to change the offset depending on which direction the player is facing.</p>
+                <p>Now we have to adjust the position of the layer to stay in sync with the player's walking animation. We will do this by checking which frame of the player's body animation is being played, and if this frame corresponds to when the player is shifted upwards in its animation, we will decrease the <code>drawOffsetY</code> by 2.</p>
+                <p>We will be using the player's body frame as opposed to the leg frame because the body frame takes into account when the player is attacking. You may have noticed that when the player is walking and attacking, it does not shift up and down.</p>
+                <p>The player's body animation is made up of 20 frames. Numbered 0-19, frames 7, 8, 9, and 14, 15, 16, are the frames where the player is shifted up in its walking animation. Those frames are in red on the spritesheet below. I figured this out by looking at the animation frames of a gif of the player walking in aesprite, and matching which ones were played when the player was shifted upwards.</p>
+                <div class="flex-row">
+                    <img src="images/BlankBodyTemplate.png" alt="blank body template">
+                    <img class="walking-gif-style" src="images/PlayerWalkingAnimation.gif" alt="player walking animation gif">
+                </div>
+                <p>We can access <code>Player.bodyFrame.Y</code> to see the Y coordinate of the top-left corner of the frame which is currently being played in the player's body animation. We can also use <code>Player.bodyFrame.Height</code> to see how many pixles tall each frame of the animation is. Every frame is the same height&mdash;56 pixels&mdash;unless some mod being used changes that.</p>
+                <p>To determine which frame is being played, we can divide <code>Player.bodyFrame.Y</code> by <code>Player.bodyFrame.Height</code>. Then we can check if this value is equal either 7, 8, 9, 14, 15, or 16; the frames in which the player is shifted upwards. If any of those frames are being played, then subtract 2 from <code>drawOffsetY</code> to shift the helmet up 2 pixels and keep it in line with the player. That is the approach that I used, and is what I will be demonstrating in this guide.</p>
+                <p>Below is the <code>Draw()</code> hook with this logic implemented.</p>
+                <div class="code-container">
+                    <div class="code-snipet">
+<pre>
+<code>
+protected override void Draw(ref PlayerDrawSet drawInfo)
+{
+    Player player = drawInfo.drawPlayer;
+
+    if (player.DeadOrGhost) return;
+
+    hatTexture ??= ModContent.Request&lt;Texture2D>("JoJosMod/Armor/SymphonyHat");
+
+    int[] highFrames = new int[] {7,8,9,14,15,16}; <span class="code-comment">// Contains all the frames where the player is shifted up</span>
+    int bodyFrameHeight = player.bodyFrame.Height;
+    int playerBodyFrameY = player.bodyFrame.Y;
+    int playerBodyFrame = playerBodyFrameY / bodyFrameHeight;
+    bool isHighFrame = highFrames.Contains(playerBodyFrame);
+
+    int drawOffsetY = -26;
+    if (isHighFrame) drawOffsetY -= 2;
+    int drawOffsetX = player.direction < 0 ? -4:-6;
+
+    var position = drawInfo.Position + new Vector2(drawOffsetX,drawOffsetY) - Main.screenPosition; 
+    position = new Vector2((int)position.X, (int)position.Y); 
+
+    DrawData drawData = new
+    (
+        hatTexture.Value,
+        position,
+        null,
+        drawInfo.colorArmorHead, 
+        0,
+        drawInfo.rotationOrigin, 
+        1f,
+        player.direction < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None
+    );
+
+    drawInfo.DrawDataCache.Add(drawData);
+}
+</code>
+</pre>
+                    </div>
+                </div>
+                <p>There are plenty of ways to go about writing this portion of the code. However, I wanted this to be very readable and easy to follow.</p>
+                <p>Now as the player walks, the helmet should shift with their movements. One last detail we can add is the ability to apply dyes to the helmet. Before <code>drawInfo.DrawDataCache.Add(drawData);</code>, add the following:</p>
+                <div class="code-container">
+                    <div class="code-snipet">
+<pre>
+<code>
+int dyeShader = player.dye?[0].dye ?? 0;
+drawData.shader = dyeShader;
+</code>
+</pre>
+                    </div>
+                </div>
+                <p>This sets <code>drawData.shader</code> to the shader of the dye equipped, or 0 if no dye is equipped.</p>
+                <p>That's pretty much it. If you want to see the complete code for this inside my project, it's <a href="https://github.com/NathanCioppa/JoJosMod">on my Github</a>.</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
