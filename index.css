@@ -15,6 +15,7 @@ body{
     margin: 0;
     transition: all 0.3s;
     z-index: 1;
+    font-family: 'Times New Roman', Times, serif;
 }
 #title-underline{
     width: 100%;
@@ -63,14 +64,14 @@ body{
     aspect-ratio: 1;
     width: calc(6em*((var(--header-visibilty-percent))/100));
     min-width: 4em;
-    background-color: var(--purple);
+    background-color: var(--primary-color-vibrant);
     clip-path: circle(50% at 0 0 );
 }
 #bottom-right-circle{
     aspect-ratio: 1;
     width: calc(6em*((var(--header-visibilty-percent))/100));
     min-width: 4em;
-    background-color: var(--purple);
+    background-color: var(--primary-color-vibrant);
     clip-path: circle(50% at 100% 100%);
 }
 #top-mid-right-circle{
@@ -81,7 +82,7 @@ body{
     clip-path: circle(50% at 50% 25%);
     width: calc(3em*((var(--header-visibilty-percent))/100));
     min-width: 2em;
-    background-color: var(--purple);
+    background-color: var(--primary-color-vibrant);
 }
 #bottom-mid-left-circle{
     position: absolute;
@@ -91,13 +92,13 @@ body{
     clip-path: circle();
     width: calc(2em*((var(--header-visibilty-percent))/100));
     min-width: 1.5em;
-    background-color: var(--yellow);
+    background-color: var(--accent-color);
 }
-#header-decoration > .purple:hover{
-    background-color: var(--yellow);
+#header-decoration > .primary-color-vibrant:hover{
+    background-color: var(--accent-color);
 }
-#header-decoration > .yellow:hover{
-    background-color: var(--purple);
+#header-decoration > .accent-color:hover{
+    background-color: var(--primary-color-vibrant);
 }
 #header-decoration * {
     transition: background-color 1s;
@@ -114,12 +115,14 @@ body{
     padding: 0 1em;
     z-index: 1;
     box-shadow: 0 3px 3px rgb(133, 133, 133);
-    border-top: calc(0.3em * var(--header-invisible)) solid var(--purple);
+    border-top: calc(0.3em * var(--header-invisible)) solid var(--primary-color-vibrant);
     transition: border 0.2s;
+    overflow: hidden;
 }
 #navbar > a {
     transition: scale, 0.3s, color 0.3s;
     font-family: sans-serif;
+    text-align: center;
     height: var(--navbar-link-height);
     padding: 0 calc(var(--navbar-link-height)/2);
     text-decoration: none;
@@ -135,13 +138,29 @@ body{
     z-index: 1;
     scale: 1.05;
     box-shadow: 0px 0px 10px rgb(51, 51, 51);
-    background-color: var(--purple);
+    background-color: var(--primary-color-vibrant);
 }
+
 #navbar > .divider{
     height: calc(var(--navbar-link-height)/2);
     width: 1px;
     background-color: rgba(255, 255, 255, 0.75);
 }
+#navbar > a > .fa-github{
+    font-size: calc(var(--navbar-link-height)/1.5);
+    transform: translate(-35%);
+}
+
+#navbar-title{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    overflow: hidden;
+    font-size: 1.25em;
+    padding-right: calc(1em * var(--header-invisible));
+    transition: all 0.75s;
+    width: calc(10em * var(--header-invisible));
+}
+
 
 
 
@@ -154,6 +173,12 @@ main{
 
 
 
+@media only screen and (max-width: 1000px) {
+    #navbar > :not(.important) {
+        display: none;
+    }
+} 
+
 :root{
     --header-visibilty-percent:100;
     --header-fully-visible: 1;
@@ -161,7 +186,7 @@ main{
 
     --navbar-link-height: 3em;
 
-    --yellow: rgb(221, 204, 54);
-    --purple: rgb(167, 55, 211);
+    --accent-color: rgb(221, 204, 54);
+    --primary-color-vibrant: rgb(177, 97, 211);
     --primary-color: rgb(186, 139, 211);
 }
