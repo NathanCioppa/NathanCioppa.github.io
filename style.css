@@ -9,12 +9,9 @@
 .text-balance{
     text-wrap: balance;
 }
-.badge-label{
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: .25em .4em;
-    margin: .1em;
-    font-size: small;
+.fit-content{
+    width: fit-content;
+    height: fit-content;
 }
 
 .flexbox-vertical{
@@ -32,20 +29,7 @@
     flex-wrap: wrap;
 }
 
-#experience-with-container{
-    width: 10vw;
-    height: fit-content;
-}
 
-#css-badge:hover{
-    background-color: aqua;
-    transition: 500ms ease-in-out;
-    transform: rotate(1turn);
-}
-#css-badge:not(:hover){
-    transition: 500ms ease-in-out;
-    transform: rotate(0turn);
-}
 .flex-row{
     display: flex;
     flex-direction: row;

@@ -163,12 +163,77 @@ body{
 
 
 
+h2{
+    margin: 0;
+    padding: 1em 3em 0.5em 1em;
+    font-size: var(--h2-font-size);
+    font-family:'Segoe UI', sans-serif;
+    font-style: italic;
+    width: fit-content;
+}
+
+.crossed-out{
+    text-decoration: line-through;
+    text-decoration-color: rgb(109, 109, 109);
+}
+
+
 
 main{
     height: 350vh;
     position: sticky;
-    background-color: rgb(255, 255, 255);
-    padding: 5px;
+    background-color: var(--base-color);
+    font-size: min(1em, 2vw);
+}
+
+p{
+    font-family:'Segoe UI', sans-serif;
+}
+
+#opening-content h2{
+    border-bottom: 3px solid;
+    border-image: linear-gradient(0.25turn, var(--primary-color), transparent)1;
+}
+#opening-content{
+    max-width: 70%;
+    
+}
+#opening-content .left-text-container{
+    padding: 1em var(--h2-font-size);
+    margin-top: calc(var(--h2-font-size)/2);
+    background-color: white;
+    border-top-right-radius: var(--h2-font-size);
+    border-bottom-right-radius: var(--h2-font-size);
+    box-shadow: 0px 5px 15px rgb(51, 51, 51);
+    width: fit-content;
+}
+#opening-content p{
+    margin-top: 0;
+    font-size: 1.1em;
+    
+}
+#opening-content p:last-child{
+    margin-bottom: 0;
+}
+#opening-content .tag-line{
+    font-style: italic;
+    text-align: center;
+}
+#opening-content .in-padding{
+    position: absolute;
+    font-family: monospace;
+    transform: translate(-1em);
+}
+#opening-content code{
+    color: rgb(131, 131, 131);
+    font-size: 0.8em;
+}
+.spaced-letters{
+    letter-spacing: 0.25em;
+}
+.white-underline{
+    border-bottom: 3px solid;
+    border-image: linear-gradient(0.25turn, rgba(255, 255, 255, 0.15), white)1;
 }
 
 
@@ -186,7 +251,10 @@ main{
 
     --navbar-link-height: 3em;
 
+    --h2-font-size: min(3em,5vw);
+
     --accent-color: rgb(221, 204, 54);
-    --primary-color-vibrant: rgb(177, 97, 211);
+    --primary-color-vibrant: rgb(181, 111, 211);
     --primary-color: rgb(186, 139, 211);
+    --base-color:rgb(230, 230, 230);
 }
