@@ -81,3 +81,7 @@
 .hidden{
     display: none;
 }
+
+.monospace{
+    font-family: monospace;
+}
