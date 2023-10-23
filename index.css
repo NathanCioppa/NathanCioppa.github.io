@@ -183,7 +183,7 @@ main{
     height: 350vh;
     position: sticky;
     background-color: var(--base-color);
-    font-size: min(1em, 2vw);
+    font-size: clamp(0.75em, 2vw, 1em);
 }
 main > div:not(:first-child) {
     margin-top: 3em;
@@ -245,7 +245,7 @@ p{
 
 
 #languages > h3 {
-    font-size: 3em;
+    font-size: min(3em, 7vw);
     text-align: center;
     letter-spacing: 0.2em;
     margin-bottom: 0.25em;
@@ -287,6 +287,41 @@ p{
 #languages-corner-rabbit:hover{
     transform: translate(0, 60%);
 }
+
+
+#projects {
+    padding: 0 2em;
+}
+#projects h3 {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: min(4em, 7vw);
+    letter-spacing: 0.1em;
+    margin-bottom: 0;
+}
+#projects-list {
+    font-size: 1.1em;
+    padding: 1em 0.5em;
+    list-style: none;
+    font-family: monospace;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    width: fit-content;
+    border-image: linear-gradient(0.25turn, transparent,var(--primary-color), transparent)1;
+}
+#projects-list li:not(:last-child) {
+    margin-bottom: 0.5em;
+}
+#projects-list a {
+    color: black;
+    text-underline-offset: 0.25em;
+    text-decoration-color: white;
+}
+#projects-list a:not(:hover) {
+    text-decoration: none;
+}
+
+
+
 
 .card{
     padding: 1em;
@@ -336,7 +371,7 @@ p{
 
     --navbar-link-height: 3em;
 
-    --h2-font-size: min(3em,5vw);
+    --h2-font-size: min(3em,6vw);
 
     --language-logo-width: min(150px, 15vw);
 
