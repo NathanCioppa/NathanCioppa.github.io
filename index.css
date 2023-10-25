@@ -5,6 +5,14 @@ body{
     margin: 0;
 }
 
+#space-background{
+    background-image: url(space-background-image.jpg);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+}
 
 
 #page-title{
@@ -26,11 +34,12 @@ body{
     z-index: 1;
 }
 #page-header{
-    background-color: black;
+    background-color: rgba(0, 0, 0, max(0.4, calc(-1 * ((var(--header-visibilty-percent) - 100) / 100))));
     font-size: min(60px,7vw);
     overflow: hidden;
     position: sticky;
     top:0;
+    opacity: calc(1 - var(--header-invisible));
 }
 #main-header-content{
     height: 6em;
@@ -180,13 +189,12 @@ h2{
 
 
 main{
-    height: 350vh;
     position: sticky;
-    background-color: var(--base-color);
     font-size: clamp(0.75em, 2vw, 1em);
 }
-main > div:not(:first-child) {
-    margin-top: 3em;
+.top-content{
+        background-color: var(--base-color);
+
 }
 
 p{
@@ -264,18 +272,19 @@ p{
 }
 
 #languages .logo{
-    
+    margin-left: 0.5em;
     width: var(--language-logo-width);
     border-radius: 10px;
     float: right;
 }
 #languages .tall-logo{
+    margin-left: 0.5em;
     height: var(--language-logo-width);
     border-radius: 10px;
     float: right;
 }
 #languages .card{
-    max-width: calc(2 * var(--language-logo-width));
+    width: calc(2.5 * var(--language-logo-width));
     margin: 1em;
 }
 #languages-corner-rabbit {
@@ -291,6 +300,7 @@ p{
 
 #projects {
     padding: 0 2em;
+    height: 100vh;
 }
 #projects h3 {
     font-family: 'Segoe UI', sans-serif;
