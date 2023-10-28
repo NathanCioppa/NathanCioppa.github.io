@@ -5,6 +5,8 @@ body{
     margin: 0;
 }
 
+
+
 #space-background{
     background-image: url(space-background-image.jpg);
     height: 100vh;
@@ -123,7 +125,7 @@ body{
     font-size: min(1em, 2.25vw);
     padding: 0 1em;
     z-index: 1;
-    box-shadow: 0 3px 3px rgb(133, 133, 133);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
     border-top: calc(0.3em * var(--header-invisible)) solid var(--primary-color-vibrant);
     transition: border 0.2s;
     overflow: hidden;
@@ -192,9 +194,8 @@ main{
     position: sticky;
     font-size: clamp(0.75em, 2vw, 1em);
 }
-.top-content{
-        background-color: var(--base-color);
-
+.front-content-container{
+    background-color: var(--base-color);
 }
 
 p{
@@ -252,6 +253,9 @@ p{
 }
 
 
+#languages{
+    padding-bottom: 50px;
+}
 #languages > h3 {
     font-size: min(3em, 7vw);
     text-align: center;
@@ -299,15 +303,24 @@ p{
 
 
 #projects {
-    padding: 0 2em;
     height: 100vh;
 }
 #projects h3 {
     font-family: 'Segoe UI', sans-serif;
     font-size: min(4em, 7vw);
-    letter-spacing: 0.1em;
-    margin-bottom: 0;
+    color: white;
+    text-shadow: 1px 1px 0px var(--accent-color), 0 0 10px var(--primary-color-vibrant);
+    margin: 0;
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.15);
+    text-align: center;
+    letter-spacing: 0.25em;
+    border-top: 0.2em ridge rgba(255, 255, 255, 0.1);
+    border-bottom: 0.2em ridge rgba(255, 255, 255, 0.1);
 }
+
+
+/*
 #projects-list {
     font-size: 1.1em;
     padding: 1em 0.5em;
@@ -329,6 +342,8 @@ p{
 #projects-list a:not(:hover) {
     text-decoration: none;
 }
+*/
+
 
 
 
