@@ -253,18 +253,25 @@ p{
 }
 
 
+
+
+
+
 #languages{
     padding-bottom: 50px;
 }
+
 #languages > h3 {
     font-size: min(3em, 7vw);
     text-align: center;
     letter-spacing: 0.2em;
     margin-bottom: 0.25em;
 }
+
 #languages > h3 .white {
     font-size: 1.5em;
 }
+
 #languages .content {
     position: relative;
     overflow: hidden;
@@ -273,6 +280,26 @@ p{
     background: linear-gradient(to right, transparent, var(--primary-color));
     flex-wrap: wrap;
     justify-content: space-evenly;
+}
+
+#languages .card{
+    width: calc(2.5 * var(--language-logo-width));
+    margin: 1em;
+    background-color: white;
+    transition: box-shadow 0.5s, scale 0.5s;
+    scale: 1;
+    box-shadow: 2px 2px 5px rgb(109, 109, 109);
+}
+#languages .card:hover{
+    box-shadow: 5px 5px 10px rgb(109, 109, 109);
+    scale: 1.01;
+}
+#languages .card-title{
+    font-family: monospace;
+    font-size: 1.2em;
+    padding-bottom: 0.2em;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid var(--primary-color-vibrant);
 }
 
 #languages .logo{
@@ -287,10 +314,7 @@ p{
     border-radius: 10px;
     float: right;
 }
-#languages .card{
-    width: calc(2.5 * var(--language-logo-width));
-    margin: 1em;
-}
+
 #languages-corner-rabbit {
     position: absolute;
     bottom: 0;
@@ -302,15 +326,26 @@ p{
 }
 
 
+
+
+
+
 #projects {
     height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
 }
+
+.glow-shadow{
+    text-shadow: 0.1px 1px 0px var(--accent-color), 0 0 10px var(--primary-color-vibrant);
+}
+
 #projects h3 {
     font-family: 'Segoe UI', sans-serif;
     font-size: min(4em, 7vw);
     color: white;
-    text-shadow: 1px 1px 0px var(--accent-color), 0 0 10px var(--primary-color-vibrant);
-    margin: 0;
+    margin: 0 0 1em;
     padding: 0.5em;
     background-color: rgba(255, 255, 255, 0.15);
     text-align: center;
@@ -318,31 +353,33 @@ p{
     border-top: 0.2em ridge rgba(255, 255, 255, 0.1);
     border-bottom: 0.2em ridge rgba(255, 255, 255, 0.1);
 }
+#projects h4{
+    font-size: min(2.75em, 5vw);
+    font-family: 'Segoe UI', sans-serif;
+    padding-bottom: 0.2em;
+    margin: 0 0 0.2em;
+    border-bottom: 1px solid;
+    border-image: linear-gradient(0.25turn, transparent,var(--primary-color-vibrant), transparent)1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+#projects .card{
+    align-self: center;
+    margin: 2em;
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 0.5em inset rgba(var(--primary-color-vibrant-raw), 0.4);
+}
+#projects .card-content{
+    height: 100px;
+}
 
-/*
-#projects-list {
-    font-size: 1.1em;
-    padding: 1em 0.5em;
-    list-style: none;
-    font-family: monospace;
-    border-top: 2px solid;
-    border-bottom: 2px solid;
-    width: fit-content;
-    border-image: linear-gradient(0.25turn, transparent,var(--primary-color), transparent)1;
+.project-icon{
+    height: 1.5em;
 }
-#projects-list li:not(:last-child) {
-    margin-bottom: 0.5em;
-}
-#projects-list a {
-    color: black;
-    text-underline-offset: 0.25em;
-    text-decoration-color: white;
-}
-#projects-list a:not(:hover) {
-    text-decoration: none;
-}
-*/
+
 
 
 
@@ -350,26 +387,9 @@ p{
 
 .card{
     padding: 1em;
-    background-color: white;
     border-radius: 1em;
     display: flex;
     flex-direction: column;
-    width: 300px;
-    transition: box-shadow 0.5s, scale 0.5s;
-    scale: 1;
-    box-shadow: 2px 2px 5px rgb(109, 109, 109);
-}
-.card:hover{
-    box-shadow: 5px 5px 10px rgb(109, 109, 109);
-    scale: 1.01;
-
-}
-.card-title{
-    font-family: monospace;
-    font-size: 1.2em;
-    padding-bottom: 0.2em;
-    margin-bottom: 0.5em;
-    border-bottom: 1px solid var(--primary-color-vibrant);
 }
 .card p {
     margin: 0;
@@ -402,6 +422,7 @@ p{
 
     --accent-color: rgb(221, 204, 54);
     --primary-color-vibrant: rgb(181, 111, 211);
+    --primary-color-vibrant-raw: 181, 111, 211;
     --primary-color: rgb(186, 139, 211);
     --base-color:rgb(230, 230, 230);
 }

@@ -1,0 +1,23 @@
+body{
+    height: 300vh;
+}
+div{
+    height: 50vh;
+    width: 50vh;
+    margin: 20px;
+    margin-bottom: 200px;
+    position: sticky;
+    top: 0;
+}
+.red{
+    background-color: red;
+    border: 10px solid orange;
+}
+.blue{
+    background-color: aqua;
+    border: 10px solid blue;
+}
+.green{
+    background-color: green;
+    border: 10px solid lime;
+}
