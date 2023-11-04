@@ -366,6 +366,7 @@ p{
 }
 
 #projects .card{
+    position: relative;
     align-self: center;
     margin: 2em;
     width: 60%;
@@ -374,6 +375,29 @@ p{
 }
 #projects .card-content{
     height: 100px;
+}
+#projects .project-page-link {
+    background-color: rgb(0, 0, 0);
+    border: 3px outset var(--accent-color);
+    border-radius: 5em;
+    color: white;
+    text-shadow: 0 0 5px var(--accent-color);
+    width: fit-content;
+    font-size: 1.1em;
+    padding: 1em 2em;
+    font-weight: bold;
+    text-decoration: none;
+    align-self: center;
+    font-family:sans-serif;
+    position: absolute;
+    bottom: 0;
+    transform: translate(0, 55%);
+    scale: 1;
+    transition: scale, box-shadow, 500ms;
+}
+#projects .project-page-link:hover{
+    scale:1.05;
+    box-shadow: 0 0 0.5em var(--accent-color);
 }
 
 .project-icon{
