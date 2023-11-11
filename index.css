@@ -4,8 +4,21 @@ html{
 body{
     margin: 0;
 }
-
-
+main{
+    position: sticky;
+    font-size: clamp(0.75em, 2vw, 1em);
+}
+h2{
+    margin: 0;
+    padding: 1em 3em 0.5em 1em;
+    font-size: var(--h2-font-size);
+    font-family:'Segoe UI', sans-serif;
+    font-style: italic;
+    width: fit-content;
+}
+p{
+    font-family:'Segoe UI', sans-serif;
+}
 
 #space-background{
     background-image: url(space-background-image.jpg);
@@ -16,6 +29,26 @@ body{
     z-index: -1;
 }
 
+
+
+
+
+#page-header{
+    background-color: rgba(0, 0, 0, max(0.4, calc(-1 * ((var(--header-visibilty-percent) - 100) / 100))));
+    font-size: min(60px,7vw);
+    overflow: hidden;
+    position: sticky;
+    top:0;
+    opacity: calc(1 - var(--header-invisible));
+}
+#main-header-content{
+    height: 6em;
+    font-size: min(60px, 7vw);
+    min-height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 #page-title{
     color: rgba(255, 255, 255, max(calc(var(--header-visibilty-percent)/100), 0.5));
@@ -35,24 +68,6 @@ body{
     transition: opacity 1s;
     z-index: 1;
 }
-#page-header{
-    background-color: rgba(0, 0, 0, max(0.4, calc(-1 * ((var(--header-visibilty-percent) - 100) / 100))));
-    font-size: min(60px,7vw);
-    overflow: hidden;
-    position: sticky;
-    top:0;
-    opacity: calc(1 - var(--header-invisible));
-}
-#main-header-content{
-    height: 6em;
-    font-size: min(60px, 7vw);
-    min-height: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
 
 #header-decoration > .top{
     position:absolute;
@@ -66,10 +81,21 @@ body{
     position:absolute;
     right: 0;
 }
+
+#header-decoration > .primary-color-vibrant:hover{
+    background-color: var(--accent-color);
+}
+#header-decoration > .accent-color:hover{
+    background-color: var(--primary-color-vibrant);
+}
+
 #header-decoration > .fading-opacity{
     opacity: max(calc(var(--header-visibilty-percent)/100), 0.5);
 }
 
+#header-decoration * {
+    transition: background-color 1s;
+}
 
 #top-left-circle{
     aspect-ratio: 1;
@@ -105,15 +131,8 @@ body{
     min-width: 1.5em;
     background-color: var(--accent-color);
 }
-#header-decoration > .primary-color-vibrant:hover{
-    background-color: var(--accent-color);
-}
-#header-decoration > .accent-color:hover{
-    background-color: var(--primary-color-vibrant);
-}
-#header-decoration * {
-    transition: background-color 1s;
-}
+
+
 
 
 
@@ -130,6 +149,17 @@ body{
     transition: border 0.2s;
     overflow: hidden;
 }
+
+#navbar-title{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    overflow: hidden;
+    font-size: 1.25em;
+    padding-right: calc(1em * var(--header-invisible));
+    transition: all 0.75s;
+    width: calc(10em * var(--header-invisible));
+}
+
 #navbar > a {
     transition: scale, 0.3s, color 0.3s;
     font-family: sans-serif;
@@ -152,64 +182,31 @@ body{
     background-color: var(--primary-color-vibrant);
 }
 
-#navbar > .divider{
-    height: calc(var(--navbar-link-height)/2);
-    width: 1px;
-    background-color: rgba(255, 255, 255, 0.75);
-}
 #navbar > a > .fa-github{
     font-size: calc(var(--navbar-link-height)/1.5);
     transform: translate(-35%);
 }
 
-#navbar-title{
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    overflow: hidden;
-    font-size: 1.25em;
-    padding-right: calc(1em * var(--header-invisible));
-    transition: all 0.75s;
-    width: calc(10em * var(--header-invisible));
+#navbar > .divider{
+    height: calc(var(--navbar-link-height)/2);
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.75);
 }
 
 
 
-h2{
-    margin: 0;
-    padding: 1em 3em 0.5em 1em;
-    font-size: var(--h2-font-size);
-    font-family:'Segoe UI', sans-serif;
-    font-style: italic;
-    width: fit-content;
-}
-
-.crossed-out{
-    text-decoration: line-through;
-    text-decoration-color: rgb(109, 109, 109);
-}
 
 
-
-main{
-    position: sticky;
-    font-size: clamp(0.75em, 2vw, 1em);
-}
-.front-content-container{
-    background-color: var(--base-color);
-}
-
-p{
-    font-family:'Segoe UI', sans-serif;
+#opening-content{
+    max-width: 70%;
+    
 }
 
 #opening-content h2{
     border-bottom: 3px solid;
     border-image: linear-gradient(0.25turn, var(--primary-color), transparent)1;
 }
-#opening-content{
-    max-width: 70%;
-    
-}
+
 #opening-content .left-text-container{
     padding: 1em var(--h2-font-size);
     margin-top: calc(var(--h2-font-size)/2);
@@ -219,6 +216,7 @@ p{
     box-shadow: 0px 5px 15px rgb(51, 51, 51);
     width: fit-content;
 }
+
 #opening-content p{
     margin-top: 0;
     font-size: 1.1em;
@@ -227,31 +225,22 @@ p{
 #opening-content p:last-child{
     margin-bottom: 0;
 }
+
 #opening-content .tag-line{
     font-style: italic;
     text-align: center;
 }
+
 #opening-content .in-padding{
     position: absolute;
     font-family: monospace;
     transform: translate(-1em);
 }
+
 #opening-content code{
     color: rgb(131, 131, 131);
     font-size: 0.8em;
 }
-.spaced-letters{
-    letter-spacing: 0.25em;
-}
-.white-underline{
-    border-bottom: 3px solid;
-    border-image: linear-gradient(0.25turn, rgba(255, 255, 255, 0.15), white)1;
-}
-.golden-underline{
-    border-bottom: 1px solid;
-    border-image: linear-gradient(0.25turn, transparent, var(--accent-color))1;
-}
-
 
 
 
@@ -267,7 +256,6 @@ p{
     letter-spacing: 0.2em;
     margin-bottom: 0.25em;
 }
-
 #languages > h3 .white {
     font-size: 1.5em;
 }
@@ -329,16 +317,10 @@ p{
 
 
 
-
 #projects {
-    height: 100vh;
     color: white;
     display: flex;
     flex-direction: column;
-}
-
-.glow-shadow{
-    text-shadow: 0.1px 1px 0px var(--accent-color), 0 0 10px var(--primary-color-vibrant);
 }
 
 #projects h3 {
@@ -353,8 +335,19 @@ p{
     border-top: 0.2em ridge rgba(255, 255, 255, 0.1);
     border-bottom: 0.2em ridge rgba(255, 255, 255, 0.1);
 }
+
+#projects .card{
+    position: relative;
+    align-self: center;
+    margin: 2em 2em 8em 2em;
+    padding-bottom: 2.5em;
+    width: 60%;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 0.5em inset rgba(var(--primary-color-vibrant-raw), 0.4);
+}
+
 #projects h4{
-    font-size: min(2.75em, 5vw);
+    font-size: min(2.5em, 5vw);
     font-family: 'Segoe UI', sans-serif;
     padding-bottom: 0.2em;
     margin: 0 0 0.2em;
@@ -365,25 +358,14 @@ p{
     justify-content: space-between;
 }
 
-#projects .card{
-    position: relative;
-    align-self: center;
-    margin: 2em;
-    width: 60%;
-    background-color: rgba(255, 255, 255, 0.15);
-    border: 0.5em inset rgba(var(--primary-color-vibrant-raw), 0.4);
-}
-#projects .card-content{
-    height: 100px;
-}
-#projects .project-page-link {
+.project-page-link {
     background-color: rgb(0, 0, 0);
     border: 3px outset var(--accent-color);
     border-radius: 5em;
     color: white;
     text-shadow: 0 0 5px var(--accent-color);
     width: fit-content;
-    font-size: 1.1em;
+    font-size: 1em;
     padding: 1em 2em;
     font-weight: bold;
     text-decoration: none;
@@ -395,7 +377,7 @@ p{
     scale: 1;
     transition: scale, box-shadow, 500ms;
 }
-#projects .project-page-link:hover{
+.project-page-link:hover{
     scale:1.05;
     box-shadow: 0 0 0.5em var(--accent-color);
 }
@@ -404,10 +386,22 @@ p{
     height: 1.5em;
 }
 
+#projects-conclusion{
+    margin-top: 0;
+    padding: 2em;
+    font-size: 1,.2em;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
 
 
 
 
+
+.front-content-container{
+    background-color: var(--base-color);
+}
 
 .card{
     padding: 1em;
@@ -415,15 +409,42 @@ p{
     display: flex;
     flex-direction: column;
 }
-.card p {
-    margin: 0;
-}
-
-
 
 .white{
     color:white;
 }
+
+.bg-primary{
+    background-color: var(--primary-color);
+}
+
+p.centered{
+    text-align: center;
+}
+
+.glow-shadow{
+    text-shadow: 0.1px 1px 0px var(--accent-color), 0 0 10px var(--primary-color-vibrant);
+}
+
+.spaced-letters{
+    letter-spacing: 0.25em;
+}
+
+.white-underline{
+    border-bottom: 3px solid;
+    border-image: linear-gradient(0.25turn, rgba(255, 255, 255, 0.15), white)1;
+}
+.golden-underline{
+    border-bottom: 1px solid;
+    border-image: linear-gradient(0.25turn, transparent, var(--accent-color))1;
+}
+
+.crossed-out{
+    text-decoration: line-through;
+    text-decoration-color: rgb(109, 109, 109);
+}
+
+
 
 
 
@@ -449,4 +470,26 @@ p{
     --primary-color-vibrant-raw: 181, 111, 211;
     --primary-color: rgb(186, 139, 211);
     --base-color:rgb(230, 230, 230);
+}
+
+
+
+
+
+.under-construction{
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.under-construction img{
+    width: fit-content;
+    height: fit-content;
+}
+.under-construction p {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 1em;
+    margin-right: 1em;
 }

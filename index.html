@@ -36,7 +36,6 @@
         <a href="">Greatest Hits</a><span class="divider"></span>
     </nav>
     <main class="flex-column">
-        <section></section>
         <div class="front-content-container">
             <section id="opening-content">
                 <h2>Look&nbsp;<span class="spaced-letters">&nbsp;Alive,</span>&nbsp;<span class="white-underline">Sunshine!</span></h2>
@@ -101,30 +100,59 @@
             </section>    
         </div>
         <section id="projects">
-            <h3 class="glow-shadow">PROJECTS</h3>
+            <h3 class="glow-shadow window-container">PROJECTS</h3>
             <div class="card">
                 <h4 class="glow-shadow">
                     Spotify AutoQueue
-                    <img class="project-icon" src="autoqueue_icon_svg.svg" alt="Spotify AutoQueue Logo">
+                    <img class="project-icon" src="autoqueue_icon_colored.png" alt="Spotify AutoQueue Logo">
                 </h4>
                 <div class="card-content">
+                    <p class="centered"><b>
+                        Spotify AutoQueue is an Android app that uses Spotify's API to automatically add songs into your queue, so that you can experience the same smooth transitions of an album while shuffling any playlist. 
+                    </b></p>
                     <p>
-
+                        I came up with this idea while I was initially messing with the Spotify Web API. Later I started working on the first version of this app using React Native, because up until that point I had only known Javascript. Eventually I had it working exactly as expected, except for one thing: I was not able to keep the app running in the background, which was essential for the app to be usable. After some research, I realized that the only good way to add that functionality was to use native code. So naturally I decided to take the time to learn Java, and completely re-create the app nativley for Android :&rpar;
+                    </p>
+                    <p>
+                        Now I use this app every day, and it is by far the project I am most proud of. 
                     </p>
                 </div>
                 <a href="" class="project-page-link">View Project</a>
             </div>
+
+            <div class="card">
+                <h4 class="glow-shadow">
+                    JoJos Mod
+                    <img class="project-icon" src="jojos_mod/images/PixelAvatar.png" alt="Spotify AutoQueue Logo">
+                </h4>
+                <div class="card-content">
+                    <p class="centered"><b>
+                        JoJos Mod is mod for the game Terraria, created using tModLoader&mdash; a program used to easily play and create mods for Terraria. Most of this mod's content references other nerd things that I like.
+                    </b></p>
+                    <p>
+                        I love Terraria, and I also like modded Terraria. So naturally I became curious about how to make mods. The game is coded in C#, but I was able to start modding just fine without trying to learn it first&mdash; it was similar enough to Java (except for the fact that it's not Java so it's automatically better). 
+                    </p>
+                    <p>
+                        Creating this mod gave me a bit of an insight on how video games are made. One thing I realized is that it's a <i>lot</i> of math, which is fun in some cases, and a bit of a headache in others. I noticed that taking on projects such as this&mdash; and even just coding in general &mdash;made me significantly better at math.
+                    </p>
+                    <p>
+                        I created my own wiki-type page for this mod, to document all of the items and what they reference.
+                    </p>
+                </div>
+                <a href="jojos_mod/jojos-mod.html" class="project-page-link">View Wiki</a>
+            </div>
+
         </section>
-        
-        <!--
-        <div id="projects">
-        <h3><span class="white">..\</span><i>Projects</i><span class="white">></span></h3>
-        <ul id="projects-list">
-            <li><a href="">Spotify_AutoQueue<span class="white">.proj</span></a></li>
-            <li><a href="">JoJos_Mod<span class="white">.proj</span></a></li>
-        </ul>
+        <div class="front-content-container">
+            
+            <p id="projects-conclusion" class="bg-primary">> Those are the more substantial projects I have worked on, but a feel free to check out all of my other public projects on <a class="white" href="https://github.com/NathanCioppa">Github</a>.</p>
+            <div class="under-construction">
+                <img src="ConstructionRabbit.png">
+                <p>This site is still under construction</p>
+                <img src="ConstructionRabbit.png">
+            </div>
+            
         </div>
-        -->
         
     </main>
 </body>
