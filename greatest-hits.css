@@ -1,23 +1,123 @@
 body{
-    height: 300vh;
+    margin: 0;
+    background-color: black;
+    color: white;
 }
-div{
-    height: 50vh;
-    width: 50vh;
-    margin: 20px;
-    margin-bottom: 200px;
+
+
+
+
+
+#navbar{
     position: sticky;
     top: 0;
+    z-index: 1;
 }
-.red{
-    background-color: red;
-    border: 10px solid orange;
+
+#navbar-title{
+    text-decoration: none;
 }
-.blue{
-    background-color: aqua;
-    border: 10px solid blue;
+#navbar-title:hover{
+    text-decoration: underline;
 }
-.green{
-    background-color: green;
-    border: 10px solid lime;
+
+
+
+
+
+.wrapper{
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    font-size: var(--navbar-font-size);
+    min-height: calc(100vh - var(--navbar-full-height));
+    padding: var(--navbar-full-height);
+}
+
+
+
+
+
+#repeat-text-position{
+    text-align: center;
+}
+
+.repeat-text{
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    align-self: center;
+    justify-self: center;
+    font-size: min(6em, 8vw);
+    color: var(--primary-color-vibrant);
+    letter-spacing: 0.1em;
+}
+.repeat-text :nth-child(1) {
+    opacity: 0.4;
+}
+.repeat-text :nth-child(2) {
+    opacity: 1;
+}
+.repeat-text :nth-child(3) {
+    opacity: 0.4;
+}
+.repeat-text :nth-child(4) {
+    opacity: 0.2;
+}
+.repeat-text :nth-child(5) {
+    opacity: 0.1;
+}
+
+#description{
+    font-size: 1.5em;
+}
+
+
+
+
+
+
+
+#albums{
+    position: relative;
+}
+
+.album-wrapper{
+    background-color: black;
+    width: 100%;
+    height: var(--viewport-minus-navbar);
+    
+    position: sticky;
+    top: var(--navbar-full-height);
+    margin-bottom: 20%;
+}
+.album-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.image-container{
+    border: 1px solid black;
+    max-height: 90%;
+    max-width: 50%;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}  
+.album-cover{
+    max-height: 100%;
+    max-width: 100%;
+    
+}
+
+.album-fading-edge{
+    width: 100%;
+    height: 50vh;
+    background: linear-gradient(transparent, black);
+    position: sticky;
+    top: -100vh;
+    transform: translate(0, 1%);/*prevents small gap between albums and fading edge*/
 }
