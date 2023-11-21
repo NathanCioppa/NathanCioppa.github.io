@@ -12,6 +12,7 @@ body{
     position: sticky;
     top: 0;
     z-index: 1;
+    border-top-width: 4px;
 }
 
 #navbar-title{
@@ -31,7 +32,6 @@ body{
     flex-direction: column;
     font-size: var(--navbar-font-size);
     min-height: calc(100vh - var(--navbar-full-height));
-    padding: var(--navbar-full-height);
 }
 
 
@@ -69,6 +69,10 @@ body{
 
 #description{
     font-size: 1.5em;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    margin-bottom: 0;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 
@@ -97,12 +101,15 @@ body{
     width: 100%;
     height: 100%;
 }
-.image-container{
-    border: 1px solid black;
+.album-section{
     max-height: 90%;
     max-width: 50%;
     height: 100vh;
     width: 100vw;
+}
+.album-cover-container{
+    border: 1px solid black;
+    perspective: 1000px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,7 +117,33 @@ body{
 .album-cover{
     max-height: 100%;
     max-width: 100%;
+}
+.album-cover:not(.album-cover.first){
+    transform-style: preserve-3d;
+    transform: rotateX(-10deg);
+}
+.album-info{
+    background-color: rgba(255, 0, 0, 0);
+    max-height: min(90%, 50vw);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em;
+    overflow: hidden;
+    aspect-ratio: 1;
+    text-align: center;
+    white-space: balance;
+    font-size: min(5vw, 8vh);
+    padding-left: 10px;
+}
+.album-name{
     
+    font-weight: bold;
+}
+.artist-name{
+    margin-top: 0.5em;
+    font-size: 0.8em;
 }
 
 .album-fading-edge{
