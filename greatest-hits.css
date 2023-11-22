@@ -80,7 +80,6 @@ body{
 
 
 
-
 #albums{
     position: relative;
 }
@@ -89,10 +88,10 @@ body{
     background-color: black;
     width: 100%;
     height: var(--viewport-minus-navbar);
-    
     position: sticky;
     top: var(--navbar-full-height);
     margin-bottom: 20%;
+    overflow-x: hidden;
 }
 .album-container{
     display: flex;
@@ -101,12 +100,14 @@ body{
     width: 100%;
     height: 100%;
 }
+
 .album-section{
     max-height: 90%;
     max-width: 50%;
     height: 100vh;
     width: 100vw;
 }
+
 .album-cover-container{
     border: 1px solid black;
     perspective: 1000px;
@@ -122,6 +123,7 @@ body{
     transform-style: preserve-3d;
     transform: rotateX(-10deg);
 }
+
 .album-info{
     background-color: rgba(255, 0, 0, 0);
     max-height: min(90%, 50vw);
@@ -137,8 +139,8 @@ body{
     font-size: min(5vw, 8vh);
     padding-left: 10px;
 }
+
 .album-name{
-    
     font-weight: bold;
 }
 .artist-name{
@@ -153,4 +155,28 @@ body{
     position: sticky;
     top: -100vh;
     transform: translate(0, 1%);/*prevents small gap between albums and fading edge*/
+}
+
+@media (orientation: portrait) {
+    .album-container{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .album-section{
+        max-height: 45%;
+        max-width: 90%;
+    }
+    .album-container{
+        justify-content: center;
+    }
+    .album-info{
+        justify-content: flex-start;
+        font-size: 3em;
+        padding-left: 0;
+        padding-top: 1em;
+        height: fit-content;
+        aspect-ratio: unset;
+    }
+    
 }
