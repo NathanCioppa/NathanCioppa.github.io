@@ -4,9 +4,10 @@ html{
 body{
     margin: 0;
 }
+
 main{
     position: sticky;
-    font-size: clamp(0.75em, 2vw, 1em);
+    font-size: clamp(0.8rem, 2vw, 1rem);
 }
 h2{
     margin: 0;
@@ -408,13 +409,13 @@ p.centered{
 
 
 
-
-
 @media only screen and (max-width: 1000px) {
     #navbar > :not(.important) {
         display: none;
     }
-} 
+}
+
+
 
 :root{
     --header-visibilty-percent:100;
