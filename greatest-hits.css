@@ -38,6 +38,7 @@ body{
 
 
 
+
 #repeat-text-position{
     text-align: center;
 }
@@ -47,7 +48,7 @@ body{
     font-weight: bold;
     align-self: center;
     justify-self: center;
-    font-size: min(6em, 8vw);
+    font-size: min(6em, 10vw);
     color: var(--primary-color-vibrant);
     letter-spacing: 0.1em;
 }
@@ -68,11 +69,18 @@ body{
 }
 
 #description{
-    font-size: 1.5em;
+    font-size: 1.65em;
     text-align: center;
-    color: rgb(255, 255, 255);
-    margin-bottom: 0;
+    color: var(--primary-color-vibrant);
+    margin: 1em;
     font-family: 'Segoe UI', sans-serif;
+}
+
+.decoration{
+    color: rgb(32, 32, 32);
+    font-weight: bold;
+    margin: 0 0.5em;
+    font-size: 1.75em;
 }
 
 
@@ -92,6 +100,15 @@ body{
     top: var(--navbar-full-height);
     margin-bottom: 20%;
     overflow-x: hidden;
+}
+.album-wrapper.end {
+    height: fit-content;
+    text-align: center;
+    font-size: 1.5em;
+    font-family: monospace;
+}
+.album-wrapper.end a {
+    color: white;
 }
 .album-container{
     display: flex;
@@ -121,7 +138,7 @@ body{
 }
 .album-cover:not(.album-cover.first){
     transform-style: preserve-3d;
-    transform: rotateX(-10deg);
+    transform: rotateX(0deg);
 }
 
 .album-info{
