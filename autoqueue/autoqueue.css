@@ -1,4 +1,7 @@
-
+body{
+    background-color: var(--base-color);
+    
+}
 
 #navbar{
     position: sticky;
@@ -11,4 +14,35 @@
 }
 #navbar-title:hover{
     text-decoration: underline;
+}
+
+
+
+
+
+main{
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    min-height: calc(100vh - var(--navbar-full-height));
+    position: relative;
+}
+
+#main-content{
+    
+}
+#alt-content{
+    position: sticky;
+    top: var(--navbar-full-height);
+    background-color: black;
+    color: white;
+    height: calc(100vh - var(--navbar-full-height));;
+}
+
+@media (orientation: portrait) {
+    main{
+        display: block;
+    }
+    #alt-content{
+        position: relative;
+    }
 }
