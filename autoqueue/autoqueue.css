@@ -1,6 +1,8 @@
+
 body{
     background-color: var(--base-color);
-    
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    font-family: sans-serif;
 }
 
 #navbar{
@@ -21,6 +23,7 @@ body{
 
 
 main{
+    
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     min-height: calc(100vh - var(--navbar-full-height));
@@ -28,21 +31,64 @@ main{
 }
 
 #main-content{
-    
+    padding: 1em;
 }
-#alt-content{
+
+
+
+
+
+#title-content{
     position: sticky;
     top: var(--navbar-full-height);
-    background-color: black;
+    background: linear-gradient(to bottom right, black, rgb(20, 45, 20));
     color: white;
-    height: calc(100vh - var(--navbar-full-height));;
+    height: calc(100vh - var(--navbar-full-height));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
+
+#title{
+    font-size: min(4vw, 4em);
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-shadow: 0.1em 0.1em 5px rgba(75, 255, 75,0.5);
+}
+
+#quote{
+    font-size: clamp(1em,2vw, 1.5em);
+    text-align: end;
+}
+#quote-author{
+    font-size: 0.7em;
+}
+
+
+
+
+
+
 
 @media (orientation: portrait) {
     main{
-        display: block;
+        display: flex;
+        flex-direction: column-reverse;
+        min-height: unset;
     }
-    #alt-content{
-        position: relative;
+    #title-content{
+        position: unset;
+        height: fit-content;
+        padding: 1rem;
+    }
+    #title{
+        font-size: min(8vw, 3em);
+    }
+    #main-content{
+        
     }
 }

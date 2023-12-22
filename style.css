@@ -114,6 +114,7 @@ body{
     border-top: var(--navbar-top-border-height) solid var(--primary-color-vibrant);
 }
 #navbar-title{
+    font-family: 'Times New Roman';
     color: rgb(255, 255, 255);
     font-weight: bold;
     overflow: hidden;
