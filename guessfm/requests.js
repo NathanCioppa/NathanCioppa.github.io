@@ -19,12 +19,12 @@ async function getTags(musicBrainzArtist) {
     // If there are not 5 tags listed on the artist's MusicBrainz profile, then tags will be gotten from their Last.fm profile.
     // Last.fm never gives more than 5 tags, and rarely gives less than 5.
     try{
-        let artistInfoRequest = await fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&mbid=${musicBrainzArtist.id}&api_key=0d233a8d757fa7ab78f3a5605a7567af&format=json`)
+        let artistInfoRequest = await fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&mbid=${musicBrainzArtist.id}&api_key=0d233a8d757fa7ab78f3a5605a7567af&format=json`)
         let artistInfo = await artistInfoRequest.json()
         
         // If the is no artist listed on last.fm under the specified MusicBrainz id, a search by name will be preformed instead.
         if(artistInfo.error) {
-            artistInfoRequest = await fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${musicBrainzArtist.name}&api_key=0d233a8d757fa7ab78f3a5605a7567af&format=json`)
+            artistInfoRequest = await fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${musicBrainzArtist.name}&api_key=0d233a8d757fa7ab78f3a5605a7567af&format=json`)
             artistInfo = await artistInfoRequest.json()
         }
 
