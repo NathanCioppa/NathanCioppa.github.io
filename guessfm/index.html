@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuessFM</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="module" src="ArtistBlock.js"></script>
+    <script src="index.js" type="module"></script>
+</head>
+<body>
+    <main>
+        <h1 id="title">GuessFM</h1>
+        <div id="search">
+            
+            <div>
+                <input type="text" id="search-artist-input" placeholder="Search for an artist to guess">
+                <button id="submit-artist-search-btn" title="search">&hookrightarrow;</button>
+            </div>
+            <span id="guess-count-display">Guess:&nbsp;<span id="guess-count">1</span>/<span id="max-guesses"></span></span>
+
+            <div id="loading-animation">
+                <span class="dot" id="dot-1"></span>
+                <span class="dot" id="dot-2"></span>
+                <span class="dot" id="dot-3"></span>
+            </div>
+        </div>
+
+        <div id="artist-search-results-wrapper">
+            <div id="artist-search-results"></div>
+        </div>
+        
+        <div id="error-message-container">
+            <button id="hide-error" title="hide error message">x</button>
+            <span id="error-message"></span>
+        </div>
+
+        <div id="guesses"></div>
+
+        <div id="end-container">
+            <div id="end-card">
+                <h2 id="end-card-title"></h2>
+                <div id="end-card-artist-container"></div>
+                <button id="play-again-btn">Play Again!</button>
+            </div>
+        </div>
+    </main>
+    
+
+    <script type="module">
+        import {submitSearch, selectArtist, resetGame} from './index.js'
+
+        document.querySelector('#play-again-btn').addEventListener('click', () => resetGame())
+
+        document.querySelector('#submit-artist-search-btn').addEventListener('click',  () => submitSearch(document.querySelector('#search-artist-input').value))
+
+        document.querySelector('#artist-search-results').addEventListener('click', event => {
+            let target = event.target
+            while (target && !target.classList.contains('artist-search-result')) {
+                target = target.parentElement;
+            }
+            selectArtist(target)
+        })
+        
+        document.querySelector("#hide-error").addEventListener('click', () => {
+            document.documentElement.style.setProperty("--error-message-display", "none")
+        })
+
+        document.addEventListener('keypress', key => {
+            if(key.code === "Enter" && document.activeElement === document.querySelector('#search-artist-input'))
+                submitSearch(document.querySelector('#search-artist-input').value)
+        })
+    </script>
+</body>
+</html>

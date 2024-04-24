@@ -1,0 +1,432 @@
+html{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+body{
+    background: linear-gradient(to bottom right, var(--background-color), var(--background-gradient-color)) fixed;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#title{
+    align-self: flex-start;
+    margin: 0.5em;
+    margin-bottom: 0;
+    position: sticky;
+    top: 0.5em;
+    z-index: 1;
+}
+
+
+
+#search{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+}
+
+
+
+#search-artist-input{
+    width: 25rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    outline:none;
+    padding-bottom: 3px;
+    caret-color: white;
+    font-size: 1.75rem;
+    color: white;
+    transition: border 0.25s;
+    text-align: center;
+}
+#search-artist-input:focus{
+    border-bottom: 2px solid white;
+}
+
+
+
+#submit-artist-search-btn{
+    font-size: 2rem;
+    padding: 0.25rem;
+    border: none;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    transition:color 0.25s;
+}
+#submit-artist-search-btn:hover {
+    color: white;
+}
+
+
+
+#guess-count-display{
+    align-self: flex-end;
+    color: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+}
+
+
+
+
+
+#artist-search-results{
+    width:20rem;
+    height: var(--search-results-container-height);
+    border-radius: 0.25rem;
+    background-color: rgba(255, 255, 255, 0.025);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    transition: height 0.3s;
+    margin-bottom: 1rem;
+}
+#artist-search-results::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+.artist-search-result{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    background: linear-gradient(to right, var(--myColor1), transparent);
+    transition: --myColor1 0.35s;
+    border-radius: 0.25rem 0.25rem 0;
+}
+.artist-search-result:hover{
+    --myColor1: rgba(255, 255, 255, 0.1);
+    cursor:pointer;
+}
+.artist-search-result:active{
+    --myColor1: rgba(255, 255, 255, 0.2);
+}
+
+.artist-search-result .artist-name{
+    font-weight: bold;
+}
+
+.artist-search-result .artist-description{
+    font-size: 0.75em;
+    font-style: italic;
+    color: rgb(199, 199, 199);
+}
+
+
+#loading-animation{
+    display: flex;
+    flex-direction: row;
+    transition: height 0.25s;
+    margin-top: 1em;
+    opacity: 0;
+}
+.dot{
+    display: block;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: white;
+    border-radius: 1em;
+    margin: 0 0.35em;
+}
+#dot-1 { 
+    animation: pulse 1s infinite;
+}
+#dot-2{
+    animation: pulse 1s 0.25s infinite
+}
+#dot-3{
+    animation: pulse 1s 0.5s infinite
+}
+
+
+
+#error-message-container {
+    background-color: rgb(15, 15, 15);
+    border-radius: 1em;
+    border-top-right-radius: 0;
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    transition: height 0.25s;
+    overflow: hidden;
+    height: fit-content;
+    display: var(--error-message-display);
+    position: absolute;
+    margin: 1rem;
+    padding: 1em;
+    top: 0;
+    right: 0;
+}
+
+#hide-error{
+    font-size: 1.1rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    transition: background-color 50ms;
+    border: none;
+    color: red;
+    border-radius: 100em;
+}
+#hide-error:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+}
+#hide-error:active{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
+#guesses{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+
+artist-block{
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em;
+    padding: 1em;
+    border-radius: 0.5em;
+    width: fit-content;
+    max-width: min(30rem, 80vw);
+    font-size: 1rem;
+    animation: show-artist-block 0.5s forwards;
+    scale: 0;
+    background-color: rgb(27, 18, 41);
+}
+
+artist-block .name {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 30ch;
+    text-align: center;
+    white-space: balance;
+}
+
+.artist-img-container{
+    border-right: 1px solid gray;
+    margin-right: 0.5em;
+    padding-right: 0.5em;
+    display: flex;
+}
+.artist-img{
+    width: 3em;
+    height: 3em;
+    background-color: rgba(0, 0, 0, 0.1);
+    clip-path: circle();
+}
+
+artist-block .info{
+    display: flex;
+    flex-direction: column;
+}
+
+artist-block .info .main-info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+artist-block .attribute{
+    border: 1px solid gray;
+    padding:  0.2em 1em 1em;
+    border-radius: 0.75em;
+    margin: 0.2em;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+    transition: transform 0.5s;
+    font-weight: bold;
+}
+artist-block .attribute .label{
+    font-size: 0.75em;
+    font-weight: normal;
+}
+
+artist-block .tags{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+artist-block .tag{
+    font-size: 0.8em;
+    padding: 1em;
+}
+
+.close{
+    animation: flip-artist-attribute-close 0.5s 0.75s forwards;
+}
+.correct{
+    animation: flip-artist-attribute-correct 0.5s 0.75s forwards;
+}
+
+.arrow{
+    display: none;
+    line-height: 1ch;
+}
+.too-low .arrow {
+    display:inline-block;
+    transform: rotate(-90deg);
+    
+}
+.too-high .arrow {
+    display:inline-block;
+    transform: rotate(90deg);
+}
+
+
+
+#end-container{
+    z-index: 2;
+    align-self: flex-start;
+    position:fixed;
+    display: var(--end-screen-display);
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    animation: var(--end-screen-animation)
+}
+
+#end-card{
+    background-color: rgb(27, 18, 41);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#end-card-title {
+    margin: 0;
+    align-self: flex-start;
+}
+
+#play-again-btn{
+    font-size: 1.25rem;
+    background-color: rgb(140, 46, 163);
+    border: none;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.25em;
+    scale: 1;
+    box-shadow: 3px 3px 3px black;
+    transition: scale, box-shadow, 0.25s;
+}
+#play-again-btn:hover{
+    scale: 1.05;
+    box-shadow: 6px 6px 6px black;
+}
+
+
+
+:root{
+    --background-color: rgb(10,10,10);
+    --background-gradient-color: rgb(39, 26, 58);
+
+    --search-results-container-height: 0;
+    --error-message-display: none; 
+
+    --end-screen-display: none;
+    --end-screen-animation:show-end-screen 0.75s forwards;
+}
+
+@property --myColor1 {
+    syntax: '<color>';
+    initial-value: rgba(255, 255, 255, 0);
+    inherits: false;
+}
+
+@keyframes show-artist-block {
+    100% {
+        scale:1;
+    }
+}
+
+@keyframes flip-artist-attribute-close {
+    100% {
+        transform: rotateX(360deg);
+        background-color: rgb(214, 157, 0);
+        border: 1px solid rgb(214, 157, 0);
+    }
+}
+
+@keyframes flip-artist-attribute-correct {
+    100% {
+        transform: rotateX(360deg);
+        background-color: rgb(20, 163, 20);
+        border: 1px solid rgb(20, 163, 20);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        scale: 1;
+        color: white;
+    }
+
+    50% {
+        scale:1.5;
+        background-color: rgb(213, 122, 255);
+    }    
+
+    100% {
+        scale: 1;
+        color: white;
+    }
+}
+@keyframes show-end-screen{
+    0%{
+        scale:0;
+        background-color:transparent;
+    }
+    50%{
+        scale: 1;
+        background-color:transparent;
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@keyframes hide-end-screen{
+    0%{
+        scale:1;
+        background-color:rgba(0, 0, 0, 0.5);
+    }
+    50%{
+        scale: 1;
+        background-color:transparent;
+    }
+    100% {
+        scale: 0;
+        background-color:transparent;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #title {
+        position: unset;
+    }
+}
