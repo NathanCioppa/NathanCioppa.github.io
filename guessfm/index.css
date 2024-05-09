@@ -4,7 +4,7 @@ html{
 }
 body{
     background: linear-gradient(to bottom right, var(--background-color), var(--background-gradient-color)) fixed;
-    margin: 0;
+    margin: 0.5rem;
 }
 
 main {
@@ -13,13 +13,36 @@ main {
     flex-direction: column;
 }
 
+#top-bar{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+}
+
 #title{
     align-self: flex-start;
     margin: 0.5em;
     margin-bottom: 0;
-    position: sticky;
-    top: 0.5em;
-    z-index: 1;
+}
+
+#guess-random-btn{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--random-guess-bg);
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 0.25rem;
+    margin-bottom: 0;
+    transition: background-color, scale, 0.15s;
+    scale: var(--random-guess-scale);
+}
+#guess-random-btn:hover{
+    background-color: rgb(108, 35, 126);
 }
 
 
@@ -36,13 +59,14 @@ main {
 
 #search-artist-input{
     width: 25rem;
+    max-width: 90vw;
     background-color: transparent;
     border: none;
     border-bottom: 2px solid rgba(255, 255, 255, 0.5);
     outline:none;
     padding-bottom: 3px;
     caret-color: white;
-    font-size: 1.75rem;
+    font-size: min(1.75rem, 6vw);
     color: white;
     transition: border 0.25s;
     text-align: center;
@@ -350,6 +374,9 @@ artist-block .tag{
 
     --end-screen-display: none;
     --end-screen-animation:show-end-screen 0.75s forwards;
+
+    --random-guess-bg: rgb(108, 35, 126);
+    --random-guess-scale: 1;
 }
 
 @property --myColor1 {
@@ -426,7 +453,7 @@ artist-block .tag{
 }
 
 @media only screen and (max-width: 900px) {
-    #title {
+    #top-bar {
         position: unset;
     }
 }
