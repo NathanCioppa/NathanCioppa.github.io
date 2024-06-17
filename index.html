@@ -59,7 +59,7 @@
                         <span class="card-title">> Javascript</span>
                         <p>
                             <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" alt="Javascript Logo" width="100px">
-                            The first programing language I learned: Javascript! I have also used React and React Native.
+                            The first programming language I learned: Javascript! I have also used React and React Native.
                         </p>
                     </div>
 
@@ -142,7 +142,22 @@
                 </div>
                 <a href="jojos_mod/jojos-mod.html" class="project-page-link">View Wiki</a>
             </div>
-
+            <div class="card">
+                <h4 class="glow-shadow">
+                    GuessFM
+                </h4>
+                <div class="card-content">
+                    <p class="centered"><b>
+                        GuessFM is an artist guessing game, where each guess gives you hints towards the correct artist.
+                    </b></p>
+                    <p>
+                        I decided to make this game after playing a game called <a href="https://spotle.io">Spotle</a>, where you guess artists from Spotify's top 1000. However, I thought it would be more interesting if the game was not limited to just the top 1000 artists, and instead allowed you to pick any artist on Spotify. I quickly realized that by using spotify's API, there was no way to get the sort of information that Spotle had&mdash; or even anything very useful at all.
+                    </p>
+                    <p>So, I instead decided to use both the Last.FM and MusicBrainz APIs. These APIs allowed access to information on just about every artist that has music online, and enough info to put together the game. MusicBrainz search made it possible to find any artist to either set as the answer, or choose as a guess. And, Last.FM's charts made it possible to create a list of the top 1000 artist which is always up to date with Last.FM's ranking from the prior week. This list is used to determine ranks of guessed artists, and allow you to try to guess a random artist from the list. Since all the information is pulled from the internet as the game is played, it essentially keeps itself up to date; As opposed to Spotle, which appeared to have all of the artist's info hardcoded into the source code, and seemed to be out of date. At one point, Spotle's source code was publicly visible, but appears to have since been made private.</p>
+                </div>
+                <a href="guessfm/index.html" class="project-page-link">Play GuessFm</a>
+            </div>
+ 
         </section>
         <div class="front-content-container">
             <p id="projects-conclusion" class="bg-primary">> Those are the more substantial projects I have worked on, but feel free to check out all of my other public projects on <a class="white" href="https://github.com/NathanCioppa">Github</a>.</p>
